@@ -1,3 +1,13 @@
+<?php
+require('dbconnect.php');
+
+echo 'DBに接続しました。';
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="ja">
 
