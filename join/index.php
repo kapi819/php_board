@@ -1,13 +1,23 @@
 <?php
-require('dbconnect.php');
+$form = [
+    'name' => ''
+];
+$error = [];
 
-echo 'DBに接続しました。';
+/* htmlspecialcharsを短くする */
+function h($value) {
+    return htmlspecialchars($value, ENT_QUOTES);
+}
 
+/*フォームの内容をチェック*/
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    $form['name'] = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
+      if($form['name'] === '') {
+        $error['name'] = 'blank';
+      }
+}
 
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -32,8 +42,10 @@ echo 'DBに接続しました。';
             <dl>
                 <dt>ニックネーム<span class="required">必須</span></dt>
                 <dd>
-                    <input type="text" name="name" size="35" maxlength="255" value=""/>
-                    <p class="error">* ニックネームを入力してください</p>
+                    <input type="text" name="name" size="35" maxlength="255" value="<?php echo h($form['name']); ?>"/>
+                     <?php if(isset($error['name']) && $error['name'] === 'blank'): ?> <!--issetで値が入っているか確認するか、初期化する必要があり -->
+                        <p class="error">* ニックネームを入力してください</p>
+                    <?php endif; ?>
                 </dd>
                 <dt>メールアドレス<span class="required">必須</span></dt>
                 <dd>
