@@ -1,6 +1,7 @@
 <?php
 $form = [
-    'name' => ''
+    'name' => '',
+    'email' => ''
 ];
 $error = [];
 
@@ -50,6 +51,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 <dt>メールアドレス<span class="required">必須</span></dt>
                 <dd>
                     <input type="text" name="email" size="35" maxlength="255" value=""/>
+                    <?php  if() ?>
                     <p class="error">* メールアドレスを入力してください</p>
                     <p class="error">* 指定されたメールアドレスはすでに登録されています</p>
                 <dt>パスワード<span class="required">必須</span></dt>
